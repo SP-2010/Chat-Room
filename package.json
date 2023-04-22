@@ -1,6 +1,7 @@
 {
     "scripts": {
       "build": "git add . && git commit -a && git push",
-      "cls":"clear"
+      "cls":"clear",
+      "report":"git status"
     }
 }
