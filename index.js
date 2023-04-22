@@ -1,3 +1,4 @@
+import {InsertData} from  "/workspaces/Chat-App/firebase.js";
 function submit() {
     var message = document.getElementById("message");
     var value = message.value;
@@ -7,6 +8,7 @@ function submit() {
     var messageList = document.getElementById("message-list");
     var newParagraphHTML = '<p class="message-text">'+ value + '</p>';
     messageList.innerHTML += newParagraphHTML;
+    InsertData();
 }
 
 var message = document.getElementById("message");
