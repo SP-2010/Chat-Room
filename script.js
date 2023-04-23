@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
-import { getDatabase, ref, set, child, update, remove } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js";
+import { getDatabase, ref, set, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,6 +21,7 @@ var DBmsgno;
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const submitButton = document.getElementById("submit-bttn");
+const readButton = document.getElementById("read-bttn");
 var message = document.getElementById("message");
 submitButton.addEventListener("click", function () {
     alert(msgno);
@@ -43,7 +44,7 @@ submitButton.addEventListener("click", function () {
         .catch((error) => {
             console.error("Failed to store data:", error.message);
             alert("Failed to store data: " + error.message);
-        });
+        });      
     DBmsgno = msgno - 1;
     set(ref(db, "messageno/"), {
         messageno: DSmsgmo,
@@ -54,5 +55,11 @@ message.addEventListener("keyup", function (event) {
     if (event.keyCode === 13) {
         event.preventDefault();
         submitButton.click(); // call submit button click event
-    }
+    };
+});
+
+
+
+readButton.addEventListener("click", function () {
+
 });
