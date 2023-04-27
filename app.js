@@ -24,23 +24,23 @@ var messagenumber;
 var actualmessage;
 var newParagraphHTML;
 
-firebase.database().ref('message-number/').on('value', (sanpshot)=>{
+firebase.database().ref('message-number/').on('value', (sanpshot) => {
     messagenumber = sanpshot.val()['count'];
 });
 
 //message find
-firebase.database().ref('messages/').on('value', (sanpshot)=>{
+firebase.database().ref('messages/').on('value', (sanpshot) => {
     newParagraphHTML = "";
-    actualmessage = sanpshot.val()['msg'+parseInt(messagenumber)]['message'];
+    actualmessage = sanpshot.val()['msg' + parseInt(messagenumber)]['message'];
     if (messageCount > 0) {
         console.log(messageCount);
         for (let i = 1; i <= messageCount; i++) {
-          newParagraphHTML += '<p class="message-text">' + sanpshot.val()['msg'+parseInt(i)]['message'] + '</p>';
+            newParagraphHTML += '<p class="message-text">' + sanpshot.val()['msg' + parseInt(i)]['message'] + '</p>';
         }
         messageList.innerHTML = newParagraphHTML;
-      } else {
+    } else {
         console.log("no messages are there yet!");
-      }
+    }
 });
 
 
@@ -55,41 +55,41 @@ submitButton.addEventListener("click", function () {
     set(ref(db, "message-number/"), {
         count: messagenumber
     })
-    .then(() => {
-        console.log("Data stored successfully!");
-    })
-    .catch((error) => {
-        console.error("Failed to store data:", error.message);
-        alert("Failed to store data: " + error.message);
-    });
+        .then(() => {
+            console.log("Data stored successfully!");
+        })
+        .catch((error) => {
+            console.error("Failed to store data:", error.message);
+            alert("Failed to store data: " + error.message);
+        });
 
 
     //Set the message in "msg"+Count
     set(ref(db, "messages/msg" + messagenumber), {
         message: message.value
     })
-    .then(() => {
-        console.log("Data stored successfully!");
-    })
-    .catch((error) => {
-        console.error("Failed to store data:", error.message);
-        alert("Failed to store data: " + error.message);
-    });      
-    
-    
+        .then(() => {
+            console.log("Data stored successfully!");
+        })
+        .catch((error) => {
+            console.error("Failed to store data:", error.message);
+            alert("Failed to store data: " + error.message);
+        });
+
+
 });
 
 message.addEventListener("keyup", function (event) {
     if (event.keyCode === 13) {
         event.preventDefault();
-        submitButton.click(); 
+        submitButton.click();
     };
 });
 
 
 var messageCount;
-firebase.database().ref('message-number/').on('value', (sanpshot)=>{
+firebase.database().ref('message-number/').on('value', (sanpshot) => {
     messageCount = sanpshot.val()['count'];
     parseInt(messageCount);
-   
+
 });
