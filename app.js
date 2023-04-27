@@ -3,14 +3,14 @@ import { getDatabase, ref, set, update, remove, onValue } from "https://www.gsta
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCwT8cFvG8VFnDUQF1BMcl-zyfEndCj-20",
-    authDomain: "chat-app-sp18.firebaseapp.com",
-    projectId: "chat-app-sp18",
-    storageBucket: "chat-app-sp18.appspot.com",
-    messagingSenderId: "734288420822",
-    appId: "1:734288420822:web:853ba2c62d37441c534e77",
-    databaseURL: "https://chat-app-sxp18-default-rtdb.asia-southeast1.firebasedatabase.app/",
-};
+  apiKey: "api-key",
+  authDomain: "domain",
+  databaseURL: "db-url",
+  projectId: "project-id",
+  storageBucket: "storage-bucket",
+  messagingSenderId: "messaging-sender-id",
+  appId: "app-id"
+}
 firebase.initializeApp(firebaseConfig);
 
 var msgno = 1;
@@ -38,8 +38,6 @@ firebase.database().ref('messages/').on('value', (sanpshot) => {
             newParagraphHTML += '<p class="message-text">' + sanpshot.val()['msg' + parseInt(i)]['message'] + '</p>';
         }
         messageList.innerHTML = newParagraphHTML;
-    } else {
-        console.log("no messages are there yet!");
     }
 });
 
@@ -47,7 +45,6 @@ firebase.database().ref('messages/').on('value', (sanpshot) => {
 submitButton.addEventListener("click", function () {
     var message = document.getElementById("message");
     var value = message.value;
-    console.log("Submitted:", value);
 
 
     //First increment the message count
@@ -56,7 +53,6 @@ submitButton.addEventListener("click", function () {
         count: messagenumber
     })
         .then(() => {
-            console.log("Data stored successfully!");
         })
         .catch((error) => {
             console.error("Failed to store data:", error.message);
