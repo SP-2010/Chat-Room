@@ -1,0 +1,45 @@
+*{
+    background-color: #000814;
+    color: #ccdbdc;
+    font-family: 'Raleway', sans-serif;
+
+}
+button{
+    border:none;
+    background-color: #001D3D;
+    border-radius: 5px;
+    height: 30px;
+    width: auto;
+
+}
+input{
+    height:30px;
+    border: none;
+    background-color: #001D3D;
+    border-radius: 5px;
+    color: white;
+}
+div, p{
+
+    border-radius: 7px;
+    align-items: center;
+    
+}
+p{
+    background-color: #003566;
+    padding-left: 15px;
+    opacity: 100%;
+    width: fit-content;
+    padding: 10px;
+}
+div{
+    background-color: rgba(0,53,102,);
+    height: 600px;
+    overflow: scroll;
+    width: 850px;
+    border: 1px solid #001D3D;
+    padding-left: 10px;
+}
+span{
+    size: 20px;
+}
